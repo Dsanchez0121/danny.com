@@ -1,65 +1,131 @@
-import Image from "next/image";
+import Link from "next/link";
+import { getAllPosts, getFeaturedPost } from "@/lib/posts";
+import AdventureCard from "@/components/AdventureCard";
 
 export default function Home() {
+  const posts = getAllPosts();
+  const featured = getFeaturedPost();
+  const rest = posts.slice(1, 4);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="bg-[#fdfbf7]">
+      {/* Hero */}
+      <section className="relative overflow-hidden">
+        <div className="mx-auto max-w-6xl px-6 lg:px-8">
+          <div className="py-16 sm:py-24 lg:py-28">
+            <div className="max-w-3xl">
+              <h1 className="font-serif text-[44px] font-[550] leading-[0.95] tracking-[-0.03em] text-stone-900 sm:text-[64px] lg:text-[76px]">
+                Random thoughts
+                <br />
+                <span className="font-[400] italic text-stone-500">and adventures.</span>
+              </h1>
+
+              <p className="mt-6 max-w-[48ch] text-[18px] leading-relaxed text-stone-600">
+                I&apos;m Daniel Sanchez. I&apos;m all over the place — lore maxing,
+                learning languages, and keeping my brain active. This is where I dump
+                whatever I&apos;m thinking about, wherever I am.
+              </p>
+
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link
+                  href="/blog"
+                  className="inline-flex items-center gap-2 rounded-full bg-stone-900 px-7 py-3.5 text-[14px] font-medium text-white transition hover:bg-orange-600"
+                >
+                  Read the journal
+                  <span>→</span>
+                </Link>
+                <Link
+                  href="/about"
+                  className="inline-flex items-center gap-2 rounded-full border border-stone-300 bg-white px-7 py-3.5 text-[14px] font-medium text-stone-700 transition hover:border-stone-900 hover:text-stone-900"
+                >
+                  About me
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+
+        {/* Subtle decorative pattern - no external image */}
+        <div className="pointer-events-none absolute right-0 top-0 hidden h-full w-[45%] lg:block">
+          <div className="absolute inset-0 bg-gradient-to-l from-transparent to-[#fdfbf7] z-10" />
+          <div className="absolute inset-0 opacity-[0.04]">
+            <div className="h-full w-full bg-[radial-gradient(circle_at_1px_1px,_#000_1px,_transparent_0)] bg-[size:24px_24px]" />
+          </div>
+        </div>
+      </section>
+
+      {/* Featured */}
+      {featured && (
+        <section className="mx-auto max-w-6xl px-6 pb-16 lg:px-8">
+          <div className="mb-6 flex items-center justify-between">
+            <h2 className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-stone-400">
+              Featured
+            </h2>
+            <Link
+              href="/blog"
+              className="text-[13px] font-medium text-stone-600 hover:text-stone-900"
+            >
+              View all →
+            </Link>
+          </div>
+          <AdventureCard
+            post={{
+              slug: featured.slug,
+              title: featured.frontmatter.title,
+              date: featured.frontmatter.date,
+              excerpt: featured.frontmatter.excerpt,
+              coverImage: featured.frontmatter.coverImage,
+              location: featured.frontmatter.location,
+              tags: featured.frontmatter.tags,
+              readingTime: featured.readingTime,
+            }}
+            featured
+          />
+        </section>
+      )}
+
+      {/* Recent grid */}
+      <section className="mx-auto max-w-6xl px-6 pb-24 lg:px-8">
+        <div className="mb-8 flex items-end justify-between">
+          <div>
+            <h2 className="font-serif text-[32px] tracking-tight">Recent notes</h2>
+            <p className="mt-1 text-[14px] text-stone-500">
+              Thoughts, adventures, and whatever else I&apos;m lore maxing on.
+            </p>
+          </div>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {rest.map((post) => (
+            <AdventureCard
+              key={post.slug}
+              post={{
+                slug: post.slug,
+                title: post.frontmatter.title,
+                date: post.frontmatter.date,
+                excerpt: post.frontmatter.excerpt,
+                coverImage: post.frontmatter.coverImage,
+                location: post.frontmatter.location,
+                tags: post.frontmatter.tags,
+                readingTime: post.readingTime,
+              }}
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          ))}
         </div>
-      </main>
+
+        {posts.length === 0 && (
+          <div className="rounded-[24px] border border-dashed border-stone-300 bg-white p-12 text-center">
+            <p className="font-serif text-[18px] text-stone-900">No posts yet.</p>
+            <p className="mt-2 text-[14px] text-stone-500">
+              Create your first post in <code className="rounded bg-stone-100 px-1.5 py-0.5">content/posts/hello.mdx</code>
+            </p>
+            <p className="mt-1 text-[13px] text-stone-400">
+              Copy the template from <code>hello.mdx</code> — add your cover image to <code>public/images/</code>
+            </p>
+          </div>
+        )}
+      </section>
     </div>
   );
 }
+

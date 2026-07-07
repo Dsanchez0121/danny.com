@@ -1,0 +1,87 @@
+---
+title: "Hello, world — my first post"
+date: "2026-07-07"
+excerpt: "This is a template. Delete me and write your own. Lore maxing starts here."
+coverImage: "/images/portrait.jpg"
+location: "Palo Alto"
+tags: ["thoughts", "adventures"]
+published: false
+---
+
+Welcome to Danny.com — this is your template post. It's hidden (`published: false`) so it won't show up live. Copy it to start a new adventure.
+
+## How to write a post
+
+1. Create a new file in `content/posts/` — filename becomes the URL slug
+   - Example: `content/posts/shanghai-notes.mdx` → `/blog/shanghai-notes`
+
+2. Add frontmatter at the top (the `---` block). Required fields:
+
+```yaml
+---
+title: "Your title"
+date: "2026-07-07" # YYYY-MM-DD
+excerpt: "One sentence that shows on cards"
+coverImage: "/images/your-cover.jpg" # put image in public/images/
+location: "Optional, like Shanghai"
+tags: ["lore", "languages"]
+published: true # false = draft, hidden
+---
+```
+
+3. Write in markdown below. You can use **bold**, *italic*, lists, quotes, code, etc.
+
+> This is a blockquote. Good for a thought that hits different.
+
+### Images
+
+**Local images (recommended for your photos):**
+
+Put your photos in `public/images/`:
+
+```
+public/images/
+  portrait.jpg          # your portrait (already there)
+  shanghai-01.jpg
+  shanghai-cover.jpg
+```
+
+Then use them:
+
+<InlinePhoto
+  src="/images/portrait.jpg"
+  alt="This is your portrait"
+  caption="Your first local image — replace me with an adventure"
+  wide
+/>
+
+**Gallery:**
+
+<PhotoGallery photos={[
+  {
+    src: "/images/portrait.jpg",
+    alt: "Portrait",
+    caption: "You can reuse the same image for testing",
+    location: "Palo Alto"
+  },
+  {
+    src: "/images/portrait.jpg",
+    alt: "Another angle",
+    caption: "Add more photos to public/images/ and reference them here"
+  }
+]} />
+
+That's it. No database, no CMS. Just files in git.
+
+### Your turn
+
+Delete this file when you're ready, or set `published: true` to see it live at `/blog/hello-world`.
+
+Ideas based on what you told me:
+- A post about lore maxing — what game/world are you deep in right now?
+- A language you're learning — what clicked recently?
+- Shanghai prep — what are you lore maxing before the trip?
+
+Write like you're texting a friend who actually wants to hear the whole story.
+
+— Daniel
