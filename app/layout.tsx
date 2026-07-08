@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL("https://dannylore.me"),
   verification: {
-    google: "sEQFoJZ_z5_G3Cup0Tnu9jZMzLIaN-gB_1kJwSCqFpg",
+    google: "em593NIkAkXEoy_N4lKWuRjsq_1VOG3oVMOQWeqhxoU",
   },
 };
 
