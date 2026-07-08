@@ -2,9 +2,8 @@ import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/posts";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // Change this to your final domain when you buy it
-  // For now using dannylore.me as canonical — update if you pick different TLD
-  const baseUrl = "https://dannylore.me";
+  // Live domain for now. When you buy dannylore.me, change this to https://dannylore.me
+  const baseUrl = "https://adventure-blog-flax.vercel.app";
 
   const posts = getAllPosts();
 
