@@ -35,7 +35,10 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
   },
-  metadataBase: new URL("https://danny.com"),
+  metadataBase: new URL("https://dannylore.me"),
+  verification: {
+    google: "sEQFoJZ_z5_G3Cup0Tnu9jZMzLIaN-gB_1kJwSCqFpg",
+  },
 };
 
 export default function RootLayout({
